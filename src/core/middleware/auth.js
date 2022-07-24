@@ -8,9 +8,13 @@ class authMiddleware {
         username,
         password
       );
+      const payload = {
+        id: user.id,
+        username: user.username,
+      };
       res.send(user);
     } catch (error) {
-        res.status(500).send(error.message);
+      res.status(500).send(error.message);
     }
   }
 }
