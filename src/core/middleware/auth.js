@@ -14,8 +14,11 @@ class authMiddleware {
           username: user.username,
         };
 
-        const jwtToken = AuthenticationManager.getJwtToken(payload);
-        res.send(jwtToken);
+        const jwt = AuthenticationManager.getJwtToken(payload);
+        res.cookie('token', jwt.token, {
+          httpOnly: true,
+          maxAge: jwt.expirySecond * 1000
+        }).end();
       }
     } catch (error) {
       res.status(500).send(error.message);

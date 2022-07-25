@@ -3,11 +3,15 @@ const {jwt: jwt_config} = require("../../config");
 
 class AuthenticationManager{
     static getJwtToken(payload){
+        const expirySecond = Number(jwt_config.expirySecond);
         const token = jwt.sign(payload, jwt_config.secret, {
             algorithm: 'HS256',
-            expiresIn: Number(jwt_config.expirySecond) 
+            expiresIn: expirySecond
         });
-        return token;
+        return{
+            token,
+            expirySecond
+        }
     }
 }
 
