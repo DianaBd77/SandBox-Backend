@@ -6,6 +6,7 @@ module.exports = {
     password: process.env.DATABASE_PASSWORD,
   },
   jwt: {
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_SECRET,
+    expirySecond: process.env.JWT_EXPIRY_SECOND 
   }
 };
