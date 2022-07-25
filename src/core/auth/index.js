@@ -13,6 +13,9 @@ class AuthenticationManager{
             expirySecond
         }
     }
+    static getJwtTokenPayload(token){
+        return jwt.verify(token, jwt_config.secret);
+    }
 }
 
 module.exports = AuthenticationManager;
