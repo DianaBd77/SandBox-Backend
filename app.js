@@ -8,6 +8,7 @@ var cors = require("cors");
 
 
 var usersRouter = require('./src/module/users/router');
+var AuthMiddleware = require('./src/core/middleware/auth');
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/users', usersRouter);
+app.post('/login', AuthMiddleware.login);
 
 
 //catch 404 and forward to error handler
