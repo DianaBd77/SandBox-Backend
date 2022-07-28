@@ -1,5 +1,5 @@
 const UserReader = require("./model/read");
-const UserCreator = require("./model/create");
+const UserCreator = require("../account/model/create");
 // const UserUpdater = require("./model/update");
 // const UserRemover = require("./model/delete");
 
@@ -34,7 +34,7 @@ class UserController {
       console.log(result)
       res.send(result);
     } catch (error) {
-      next(err);
+      next(error);
     }
   }
 

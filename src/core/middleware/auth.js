@@ -1,25 +1,30 @@
 const UserReader = require("../../module/users/model/read");
 const AuthenticationManager = require("../auth");
+const bcrypt = require("bcrypt");
 
 class AuthMiddleware {
   static async login(req, res, next) {
     try {
       const { username, password } = req.body;
-      const user = await UserReader.getUserByUsernameAndPassword(
-        username,
-        password
-      );
-      if (!user) {
-        res.status(401).end();
-      } else {
-        const payload = {
-          id: user[0].id,
-          username: user[0].username,
-        };
-        
-        const jwt = AuthenticationManager.getJwtToken(payload);
-        res.send(jwt);
+      const users = await UserReader.getUserByUsername(username);
+      if(!users[0]){
+        res.status(401).end("User not Exist!")
+      } else{
+        const dbPass = users[0].password;
+        const comparePass = await bcrypt.compare(password, dbPass);
+        if (comparePass) {
+          const payload = {
+            id: users[0].id,
+            username: users[0].email,
+          };
+  
+          const jwt = AuthenticationManager.getJwtToken(payload);
+          res.send(jwt);
+        } else {
+          res.status(403).end("Wrong Password!");
+        }
       }
+
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -27,29 +32,27 @@ class AuthMiddleware {
 
   static jwtTokenValidation(req, res, next) {
     try {
-      const jwtToken = AuthMiddleware.parseAuthorizationToken(req.headers.authorization);
+      const jwtToken = AuthMiddleware.parseAuthorizationToken(
+        req.headers.authorization
+      );
       if (!jwtToken) {
         throw new Error("Token not Exists!");
       }
       const payload = AuthenticationManager.getJwtTokenPayload(jwtToken);
-      console.log(payload)
-      console.log(payload)
       req.jwt_payload = payload;
       next();
     } catch (error) {
-      console.log('err :>> ', err);
       res.status(401).end();
     }
   }
 
-  static parseAuthorizationToken(authorization){
-    if(!authorization){
-      throw new Error('Authorization Token not Found!')
+  static parseAuthorizationToken(authorization) {
+    if (!authorization) {
+      throw new Error("Authorization Token not Found!");
     }
-    const bearer = authorization.split(' ');
-    return bearer;
+    const bearer = authorization.split(" ");
+    return bearer[1];
   }
-
 }
 
 module.exports = AuthMiddleware;

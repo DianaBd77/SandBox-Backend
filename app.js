@@ -8,7 +8,7 @@ var cors = require("cors");
 
 
 var usersRouter = require('./src/module/users/router');
-var AuthMiddleware = require('./src/core/middleware/auth');
+var accountRouter = require('./src/module/account/router');
 
 var app = express();
 
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/users', usersRouter);
-app.post('/login', AuthMiddleware.login);
+app.use('/account', accountRouter);
 
 
 //catch 404 and forward to error handler
@@ -38,7 +38,8 @@ app.use((err, req, res, next) =>{
 
     //render the err page
     res.status(err.status || 500);
-    res.render('error');
+    console.log('err :>> ', err);
+    res.send(err);
 })
 
 module.exports = app;
