@@ -8,8 +8,8 @@ class UserController {
     try {
       const users = await UserReader.getAllUsers();
       res.send(users);
-    } catch {
-      next(err);
+    } catch(error) {
+      next(error);
     }
   }
 
@@ -22,8 +22,8 @@ class UserController {
 
       const user = await UserReader.getUserByID(id);
       res.send(user);
-    } catch {
-      next(err);
+    } catch(error) {
+      next(error);
     }
   }
 
