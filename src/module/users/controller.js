@@ -1,7 +1,4 @@
 const UserReader = require("./model/read");
-const UserCreator = require("../account/model/create");
-// const UserUpdater = require("./model/update");
-// const UserRemover = require("./model/delete");
 
 class UserController {
   static async getAllUsers(req, res, next) {
@@ -23,17 +20,6 @@ class UserController {
       const user = await UserReader.getUserByID(id);
       res.send(user);
     } catch(error) {
-      next(error);
-    }
-  }
-
-  static async createNewUser(req, res, next) {
-    try {
-      const userData = req.body;
-      const result = await UserCreator.createUser(userData);
-      console.log(result)
-      res.send(result);
-    } catch (error) {
       next(error);
     }
   }
