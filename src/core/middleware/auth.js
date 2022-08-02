@@ -8,7 +8,7 @@ class AuthMiddleware {
       const { username, password } = req.body;
       const users = await UserReader.getUserByUsername(username);
       if(!users[0]){
-        res.status(401).end("User not Exist!")
+        res.status(404).end("User not Exist!")
       } else{
         const dbPass = users[0].password;
         const comparePass = await bcrypt.compare(password, dbPass);
@@ -19,7 +19,7 @@ class AuthMiddleware {
           };
   
           const jwt = AuthenticationManager.getJwtToken(payload);
-          res.send(jwt);
+          res.json(jwt);
         } else {
           res.status(403).end("Wrong Password!");
         }
