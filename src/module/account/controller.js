@@ -7,21 +7,28 @@ class UserController {
     try {
       const userData = req.body;
       const { email, username } = userData;
-      const query = `SELECT * FROM user WHERE email = '${email}'`;
-      const findEmail = await DatabaseManager.query(query);
-      if (findEmail[0][0]) {
+      const usernameQuery = `SELECT * FROM user WHERE username = '${username}'`;
+      const findUsername = await DatabaseManager.query(usernameQuery);
+      const emailQuery = `SELECT * FROM user WHERE email = '${email}'`;
+      const findEmail = await DatabaseManager.query(emailQuery);
+      if (findUsername[0][0]) {
+        res.status(409).end("Username Already Exist!");
+        return;
+      } else if (findEmail[0][0]) {
         res.status(409).end("Email Already Exist!");
-      } else {
-        const result = await UserCreator.createUser(userData);
-        const payload = {
-          id: email,
-          username: username,
-        };
-
-        const jwt = await AuthenticationManager.getJwtToken(payload);
-        res.json(jwt);
-        // res.send(result);
+        return;
       }
+
+      await UserCreator.createUser(userData);
+      const payload = {
+        id: email,
+        username: username,
+      };
+
+      const jwt = await AuthenticationManager.getJwtToken(payload);
+      res.json(jwt);
+      // res.send(result);
+
     } catch (error) {
       next(error);
     }
