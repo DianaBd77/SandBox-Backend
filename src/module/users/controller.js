@@ -4,8 +4,8 @@ class UserController {
   static async getAllUsers(req, res, next) {
     try {
       const users = await UserReader.getAllUsers();
-      res.send(users);
-    } catch(error) {
+      res.json(users);
+    } catch (error) {
       next(error);
     }
   }
@@ -13,17 +13,16 @@ class UserController {
   static async getUserByID(req, res, next) {
     try {
       const { id } = req.params;
-      if(id != req.jwt_payload.id){
-        throw new Error("You can not get other user data");
+      if (id != req.jwt_payload.id) {
+        res.status(403).end("Access Denied");
       }
 
       const user = await UserReader.getUserByID(id);
-      res.send(user);
-    } catch(error) {
+      res.json(user);
+    } catch (error) {
       next(error);
     }
   }
-
 }
 
 module.exports = UserController;
