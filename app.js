@@ -7,8 +7,10 @@ var logger = require('morgan');
 var cors = require("cors");
 
 
-var usersRouter = require('./src/module/users/router');
 var accountRouter = require('./src/module/account/router');
+var usersRouter = require('./src/module/users/router');
+var pollRouter = require('./src/module/poll/router');
+
 
 var app = express();
 
@@ -20,8 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/users', usersRouter);
 app.use('/account', accountRouter);
+app.use('/users', usersRouter);
+app.use('/poll', pollRouter);
+
 
 
 //catch 404 and forward to error handler
