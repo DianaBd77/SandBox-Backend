@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+var {errors} = require("celebrate");
+
 
 
 var accountRouter = require('./src/module/account/router');
@@ -26,6 +28,8 @@ app.use('/account', accountRouter);
 app.use('/users', usersRouter);
 app.use('/poll', pollRouter);
 
+
+app.use(errors());
 
 
 //catch 404 and forward to error handler
