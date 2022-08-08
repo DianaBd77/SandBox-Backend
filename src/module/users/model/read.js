@@ -8,7 +8,7 @@ class UserReader {
   }
 
   static async getUserByID(id) {
-    const query = `SELECT * FROM user WHERE userID = ${id}`;
+    const query = `SELECT * FROM user WHERE id = ${id}`;
     const result = await DatabaseManager.query(query);
     return result[0];
   }
