@@ -19,12 +19,14 @@ class UserController {
         return;
       }
 
-      await UserCreator.createUser(userData);
+      const newUser = await UserCreator.createUser(userData);
+      const newUserID = newUser[0].insertId;
+   
       const payload = {
-        id: email,
+        id: newUserID,
         username: username,
       };
-
+      
       const jwt = await AuthenticationManager.getJwtToken(payload);
       res.json(jwt);
       // res.send(result);
