@@ -5,7 +5,7 @@ class PollCreator {
   static async createPoll(userID, userData) {
     const { title, description, img_url } = userData;
     let uuid = uuidv4();
-    let link = `localhost:3001/poll/:${uuid}`;
+    let link = uuid;
     const pollQuery = `
       INSERT INTO poll
       (user_id, title, description, link, img_url)
