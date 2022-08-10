@@ -1,11 +1,11 @@
 const DatabaseManager = require("../../../core/database/databaseManager");
 
 class UserReader {
-  static async getAllUsers() {
-    const query = `SELECT * FROM user`;
-    const result = await DatabaseManager.query(query);
-    return result[0];
-  }
+  // static async getAllUsers() {
+  //   const query = `SELECT * FROM user`;
+  //   const result = await DatabaseManager.query(query);
+  //   return result[0];
+  // }
 
   static async getUserByID(id) {
     const query = `SELECT * FROM user WHERE id = ${id}`;
