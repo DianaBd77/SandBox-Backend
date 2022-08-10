@@ -16,9 +16,9 @@ class PollController {
 
   static async getPollByID(req, res, next) {
     try {
-      const { id } = req.params;
+      const { uuid } = req.params;
       const userID = req.jwt_payload.id; 
-      const poll = await PollReader.getPollByID(userID, id);
+      const poll = await PollReader.getPollByID(userID, uuid);
       res.json(poll);
     } catch (error) {
       next(error);
@@ -29,7 +29,7 @@ class PollController {
     try {
       const userData = req.body;
       const userID = req.jwt_payload.id; 
-      await PollCreator.createPoll(userID, userData);
+      const result = await PollCreator.createPoll(userID, userData);
       res.json(result);
     } catch (error) {
       next(error);
@@ -38,9 +38,9 @@ class PollController {
 
   static async updatePoll(req, res, next) {
     try {
-      const { id } = req.params;
+      const { uuid } = req.params;
       const userData = req.body;
-      const result = await PollUpdater.updatePoll(id, userData);
+      const result = await PollUpdater.updatePoll(uuid, userData);
       res.json(result);
     } catch (error) {
       next(error);
@@ -49,8 +49,8 @@ class PollController {
 
   static async removePoll(req, res, next) {
     try {
-      const { id } = req.params;
-      const result = await PollRemover.deletePollByID(id);
+      const { uuid } = req.params;
+      const result = await PollRemover.deletePollByID(uuid);
       res.json(result);
     } catch (error) {
       next(error);
