@@ -9,10 +9,8 @@ class PollValidator {
 
   static createPollSchema = celebrate({
     [Segments.BODY]: Joi.object().keys({
-      user_id: Joi.number().integer().positive().required(),
       title: Joi.string().required(),
       description: Joi.string(),
-      link: Joi.string().required(),
       img_url: Joi.string(),
     }),
   });
