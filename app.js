@@ -12,6 +12,7 @@ var {errors} = require("celebrate");
 var accountRouter = require('./src/module/account/router');
 var usersRouter = require('./src/module/users/router');
 var pollRouter = require('./src/module/poll/router');
+var itemRouter = require('./src/module/item/router');
 
 
 var app = express();
@@ -25,8 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/account', accountRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/poll', pollRouter);
+app.use('/item', itemRouter);
 
 
 app.use(errors());
