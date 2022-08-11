@@ -9,7 +9,7 @@ class AccountValidator {
             first_name: Joi.string().required(),
             last_name: Joi.string().required(),
             email: Joi.string().email().required()
-        })
+        }).min(1),
         })
 }
 

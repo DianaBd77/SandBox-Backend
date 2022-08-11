@@ -1,10 +1,10 @@
 const { celebrate, Joi, Segments } = require("celebrate");
 
-class PollValidator {
+class ItemValidator {
   static getItemsByPollIDSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.number().integer().positive().required(),
-    }),
+    }).max(1),
   });
 
   static createItemSchema = celebrate({
@@ -19,8 +19,8 @@ class PollValidator {
   static deleteItemSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.number().integer().positive().required(),
-    }),
+    }).max(1),
   });
 }
 
-module.exports = PollValidator;
+module.exports = ItemValidator;

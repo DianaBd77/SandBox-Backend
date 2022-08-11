@@ -4,7 +4,7 @@ class PollValidator {
   static getPollByIDSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       uuid: Joi.string().required(),
-    }),
+    }).max(1),
   });
 
   static createPollSchema = celebrate({
@@ -29,7 +29,7 @@ class PollValidator {
   static deletePollSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       uuid: Joi.string().required(),
-    }),
+    }).max(1),
   });
 }
 
