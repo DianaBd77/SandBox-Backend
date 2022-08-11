@@ -12,7 +12,7 @@ class PollValidator {
       title: Joi.string().required(),
       description: Joi.string(),
       img_url: Joi.string(),
-    }),
+    }).required(),
   });
 
   static updatePollSchema = celebrate({
@@ -23,7 +23,7 @@ class PollValidator {
       title: Joi.string(),
       description: Joi.string(),
       img_url: Joi.string(),
-    }),
+    }).min(1),
   });
 
   static deletePollSchema = celebrate({
