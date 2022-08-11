@@ -13,6 +13,7 @@ var accountRouter = require('./src/module/account/router');
 var usersRouter = require('./src/module/users/router');
 var pollRouter = require('./src/module/poll/router');
 var itemRouter = require('./src/module/item/router');
+var participantRouter = require('./src/module/participant/router');
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use('/account', accountRouter);
 app.use('/user', usersRouter);
 app.use('/poll', pollRouter);
 app.use('/item', itemRouter);
+app.use('/participant', participantRouter);
 
 
 app.use(errors());
