@@ -14,7 +14,7 @@ var usersRouter = require('./src/module/users/router');
 var pollRouter = require('./src/module/poll/router');
 var itemRouter = require('./src/module/item/router');
 var participantRouter = require('./src/module/participant/router');
-
+var choiceRouter = require('./src/module/participantChoice/router');
 
 var app = express();
 
@@ -31,6 +31,7 @@ app.use('/user', usersRouter);
 app.use('/poll', pollRouter);
 app.use('/item', itemRouter);
 app.use('/participant', participantRouter);
+app.use('/choice', choiceRouter);
 
 
 app.use(errors());
