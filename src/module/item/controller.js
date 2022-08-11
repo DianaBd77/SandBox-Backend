@@ -1,6 +1,8 @@
 const ItemRemover = require("./model/delete");
 const ItemCreator = require("./model/create");
 const ItemReader = require("./model/read");
+const DatabaseManager = require("../../core/database/databaseManager");
+
 
 class OptionController {
 
@@ -20,7 +22,14 @@ class OptionController {
       itemArray.forEach( async (item) => {
       await ItemCreator.createItem(item);
       });
-      res.end({ message: "Create Items Successfully"});
+      const pollID = itemArray[0].poll_id;
+      const pollQuery = `SELECT id FROM poll WHERE id = ${pollID}`;
+      const findPollByID = await DatabaseManager.query(pollQuery);
+      if(findPollByID[0].length === 0){
+        res.status(404).send({ message: "Poll doesn't Exist!"});
+        return;
+      }
+      res.send({ message: "Create Items Successfully"});
     } catch (error) {
       next(error);
     }
