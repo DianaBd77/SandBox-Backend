@@ -15,7 +15,7 @@ class PollReader {
   static async getPollByID(userID, uuid) {
 
     const query = `
-          SELECT title, description, link, img_url
+          SELECT id, title, description, link, img_url
           FROM poll
           WHERE link = '${uuid}'
                 And user_id = ${userID};
