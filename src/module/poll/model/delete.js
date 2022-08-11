@@ -1,13 +1,13 @@
 const DatabaseManager = require("../../../core/database/databaseManager");
 
-class ItemRemover {
-  static async deleteItemByID(id) {
+class PollRemover {
+  static async deleteItemByID(uuid) {
     const query = `
     DELETE FROM items
-    WHERE poll_id = '${id}'`;
+    WHERE link = '${uuid}'`;
     const result = await DatabaseManager.query(query);
     return result;
   }
 }
 
-module.exports = ItemRemover;
+module.exports = PollRemover;
