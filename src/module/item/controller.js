@@ -1,4 +1,4 @@
-const ItemRemover = require("../poll/model/delete");
+const ItemRemover = require("./model/delete");
 const ItemCreator = require("./model/create");
 const ItemReader = require("./model/read");
 
@@ -17,10 +17,10 @@ class OptionController {
   static async createNewItem(req, res, next) {
     try {
       const itemArray = req.body;
-      itemArray.forEach( async (items) => {
-       const result =  await ItemCreator.createItem(items);
-       res.json(result);
+      itemArray.forEach( async (item) => {
+      await ItemCreator.createItem(item);
       });
+      res.end({ message: "Create Items Successfully"});
     } catch (error) {
       next(error);
     }
