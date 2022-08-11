@@ -1,7 +1,7 @@
 const { celebrate, Joi, Segments } = require("celebrate");
 
 class ItemValidator {
-  static getItemsByPollIDSchema = celebrate({
+  static getItemsByIDSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.number().integer().positive().required(),
     }).max(1),
@@ -16,11 +16,6 @@ class ItemValidator {
     ).required().min(1),
   });
 
-  static deleteItemSchema = celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      id: Joi.number().integer().positive().required(),
-    }).max(1),
-  });
 }
 
 module.exports = ItemValidator;

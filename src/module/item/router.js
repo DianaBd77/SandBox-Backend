@@ -6,9 +6,10 @@ const ItemValidator = require("./validation");
 const router = express.Router();
 
 
-router.get('/:id', ItemValidator.getItemsByPollIDSchema , AuthMiddleware.jwtTokenValidation, ItemController.getAllItems);
+router.get('/:id', ItemValidator.getItemsByIDSchema , AuthMiddleware.jwtTokenValidation, ItemController.getAllItems);
+router.get('/id/:id', ItemValidator.getItemsByIDSchema ,AuthMiddleware.jwtTokenValidation, ItemController.getItemByID);
 router.post('/', ItemValidator.createItemSchema ,AuthMiddleware.jwtTokenValidation, ItemController.createNewItem);
-router.delete('/:id', ItemValidator.deleteItemSchema ,AuthMiddleware.jwtTokenValidation, ItemController.removeItem);
+router.delete('/:id', ItemValidator.getItemsByIDSchema ,AuthMiddleware.jwtTokenValidation, ItemController.removeItem);
 
 
 module.exports = router;
