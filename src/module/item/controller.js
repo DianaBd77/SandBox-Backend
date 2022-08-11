@@ -16,6 +16,18 @@ class OptionController {
     }
   }
 
+  static async getItemByID(req, res, next) {
+    try {
+      const { id } = req.params;
+      const item = await ItemReader.getItemsByID(id);
+      res.json(item);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
+
   static async createNewItem(req, res, next) {
     try {
       const itemArray = req.body;
