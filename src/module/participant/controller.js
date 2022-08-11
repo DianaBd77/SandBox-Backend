@@ -1,6 +1,6 @@
 const ParticipantRemover = require("./model/delete");
 const ParticipantCreator = require("./model/create");
-const ParticipantReader = require("./model/reade");
+const ParticipantReader = require("./model/read");
 
 
 class ParticipantController {
@@ -17,7 +17,6 @@ class ParticipantController {
   static async createNewParticipant(req, res, next) {
     try {
       const participantData = req.body;
-      console.log('participantData :>> ', participantData);
       const result = await ParticipantCreator.createParticipant(participantData);
       res.json(result);
     } catch (error) {
