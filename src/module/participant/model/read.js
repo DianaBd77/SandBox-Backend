@@ -1,6 +1,5 @@
 const DatabaseManager = require("../../../core/database/databaseManager");
 
-
 class ParticipantReader {
   static async getAllParticipant(id) {
     const query = `
@@ -11,7 +10,6 @@ class ParticipantReader {
     const result = await DatabaseManager.query(query);
     return result[0];
   }
-
 }
 
 module.exports = ParticipantReader;
