@@ -1,8 +1,8 @@
-const UserCreator = require("./model/create");
+const AccountCreator = require("./model/create");
 const DatabaseManager = require("../../core/database/databaseManager");
 const AuthenticationManager = require("../../core/auth");
 
-class UserController {
+class AccountController {
   static async createNewUser(req, res, next) {
     try {
       const userData = req.body;
@@ -19,22 +19,30 @@ class UserController {
         return;
       }
 
-      const newUser = await UserCreator.createUser(userData);
+      const newUser = await AccountCreator.createUser(userData);
       const newUserID = newUser[0].insertId;
-   
+
       const payload = {
         id: newUserID,
         username: username,
       };
-      
+
       const jwt = await AuthenticationManager.getJwtToken(payload);
       res.json(jwt);
       // res.send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
 
+  static async checkLogin(req, res, next) {
+    try {
+      const jwt = req.jwt_payload;
+      res.json(jwt);
     } catch (error) {
       next(error);
     }
   }
 }
 
-module.exports = UserController;
+module.exports = AccountController;
