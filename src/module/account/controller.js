@@ -34,15 +34,6 @@ class AccountController {
       next(error);
     }
   }
-
-  static async checkLogin(req, res, next) {
-    try {
-      const jwt = req.jwt_payload;
-      res.json(jwt);
-    } catch (error) {
-      next(error);
-    }
-  }
 }
 
 module.exports = AccountController;

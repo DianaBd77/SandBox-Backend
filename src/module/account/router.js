@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.post('/login', AuthMiddleware.login);
 router.post('/signup', AccountValidator.createAccountSchema, AccountController.createNewUser);
-router.get('/logged-in', AuthMiddleware.jwtTokenValidation, AccountController.checkLogin);
 
 
 
