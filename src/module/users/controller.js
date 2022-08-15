@@ -12,13 +12,9 @@ class UserController {
 
   static async getUserByID(req, res, next) {
     try {
-      const { id } = req.params;
-      if (id != req.jwt_payload.id) {
-        res.status(403).end("Access Denied");
-      }
-
-      const user = await UserReader.getUserByID(id);
-      res.json(user);
+      const {id} = req.jwt_payload;
+      const username = await UserReader.getUserByID(id)
+      res.json(username);
     } catch (error) {
       next(error);
     }
