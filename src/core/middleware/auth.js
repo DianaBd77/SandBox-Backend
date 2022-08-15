@@ -15,9 +15,8 @@ class AuthMiddleware {
         if (comparePass) {
           const payload = {
             id: users[0].id,
-            username: users[0].email,
+            username: users[0].username,
           };
-  
           const jwt = AuthenticationManager.getJwtToken(payload);
           res.json(jwt);
         } else {
