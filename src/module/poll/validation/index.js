@@ -1,9 +1,15 @@
 const { celebrate, Joi, Segments } = require("celebrate");
 
 class PollValidator {
-  static getPollByIDSchema = celebrate({
+  static getPollByUuidSchema = celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       uuid: Joi.string().required(),
+    }).max(1),
+  });
+
+  static getPollByIDSchema = celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.number().integer().positive().required(),
     }).max(1),
   });
 

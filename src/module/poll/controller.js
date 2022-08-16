@@ -7,8 +7,19 @@ class PollController {
   static async getAllPolls(req, res, next) {
     try {
       const userID = req.jwt_payload.id; 
-      const polls = await PollReader.getAllPolls(userID);
+      const polls = await PollReader.getAllPoll(userID);
       res.json(polls);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getPollByUuid(req, res, next) {
+    try {
+      const { uuid } = req.params;
+      const userID = req.jwt_payload.id; 
+      const poll = await PollReader.getPollByUuid(userID, uuid);
+      res.json(poll);
     } catch (error) {
       next(error);
     }
@@ -16,9 +27,9 @@ class PollController {
 
   static async getPollByID(req, res, next) {
     try {
-      const { uuid } = req.params;
+      const { id } = req.params;
       const userID = req.jwt_payload.id; 
-      const poll = await PollReader.getPollByID(userID, uuid);
+      const poll = await PollReader.getPollByID(userID, id);
       res.json(poll);
     } catch (error) {
       next(error);
