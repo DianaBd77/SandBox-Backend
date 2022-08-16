@@ -1,9 +1,9 @@
 const DatabaseManager = require("../../../core/database/databaseManager");
 
 class PollRemover {
-  static async deleteItemByID(uuid) {
+  static async deletePollByID(uuid) {
     const query = `
-    DELETE FROM items
+    DELETE FROM poll
     WHERE link = '${uuid}'`;
     const result = await DatabaseManager.query(query);
     return result;
