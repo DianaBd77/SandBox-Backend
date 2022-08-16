@@ -10,7 +10,7 @@ class PollCreator {
       INSERT INTO poll
       (user_id, title, description, link, img_url)
       VALUES
-      ('${userID}', '${title}', '${description}', '${link}', '${img_url}');
+      (${userID}, '${title}', '${description}', '${link}', '${img_url}');
       `;
     const result = await DatabaseManager.query(pollQuery);
     return result;
