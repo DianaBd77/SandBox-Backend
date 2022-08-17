@@ -17,8 +17,8 @@ class PollValidator {
     [Segments.BODY]: Joi.object().keys({
       title: Joi.string().required(),
       description: Joi.string(),
-      img_url: Joi.string(),
-    }).required(),
+      img_url: Joi.optional().default(null)
+    }).min(1),
   });
 
   static updatePollSchema = celebrate({
