@@ -13,7 +13,7 @@ class ChoiceReader {
 
   static async getChoiceByPollID(pollID) {
     const query = `
-    SELECT p.name, i.item
+    SELECT p.id, p.name, i.item
     FROM choice c
         INNER JOIN participant p on c.participant_id = p.id
         INNER JOIN items i on c.item_id = i.id
