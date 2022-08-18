@@ -14,6 +14,17 @@ class ChoiceController {
     }
   }
 
+
+  static async getChoiceByPollID(req, res, next) {
+    try {
+      const { id } = req.params;
+      const choice = await ChoiceReader.getChoiceByPollID(id);
+      res.json(choice);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async createNewChoice(req, res, next) {
     try {
       const choice = req.body;

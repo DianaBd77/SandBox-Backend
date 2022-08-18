@@ -3,7 +3,7 @@ const DatabaseManager = require("../../../core/database/databaseManager");
 class ParticipantReader {
   static async getAllParticipant(id) {
     const query = `
-      SELECT name
+      SELECT id, name
       FROM participant
       WHERE poll_id = ${id};
     `;
