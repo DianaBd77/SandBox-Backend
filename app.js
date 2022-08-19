@@ -18,7 +18,7 @@ var choiceRouter = require('./src/module/participantChoice/router');
 
 var app = express();
 
-app.use(cors({origin: ["http://dianabehshad.xyz:80"]}));
+app.use(cors({origin: ["http://dianabehshad.xyz/"]}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
