@@ -27,8 +27,8 @@ class PollValidator {
     }),
     [Segments.BODY]: Joi.object().keys({
       title: Joi.string(),
-      description: Joi.string(),
-      img_url: Joi.string(),
+      description: Joi.optional().default(null),
+      img_url: Joi.optional().default(null)
     }).min(1),
   });
 

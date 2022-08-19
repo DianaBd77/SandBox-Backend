@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 router.get('/', AuthMiddleware.jwtTokenValidation, PollController.getAllPolls);
-router.get('/:uuid', PollValidator.getPollByUuidSchema ,AuthMiddleware.jwtTokenValidation, PollController.getPollByUuid);
+router.get('/:uuid', PollValidator.getPollByUuidSchema , PollController.getPollByUuid);
 router.get('/pollID/:id', PollValidator.getPollByIDSchema ,AuthMiddleware.jwtTokenValidation, PollController.getPollByID);
 router.post('/', PollValidator.createPollSchema ,AuthMiddleware.jwtTokenValidation, PollController.createPoll);
 router.patch('/:uuid', PollValidator.updatePollSchema ,AuthMiddleware.jwtTokenValidation, PollController.updatePoll);

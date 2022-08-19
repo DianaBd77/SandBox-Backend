@@ -14,13 +14,11 @@ router.get(
 router.get(
   "/id/:id",
   ChoiceValidator.getChoicesByIDSchema,
-  AuthMiddleware.jwtTokenValidation,
   ChoiceController.getChoiceByPollID
 );
 router.post(
   "/",
   ChoiceValidator.createChoiceSchema,
-  AuthMiddleware.jwtTokenValidation,
   ChoiceController.createNewChoice
 );
 router.delete(

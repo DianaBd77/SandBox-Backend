@@ -17,8 +17,7 @@ class PollController {
   static async getPollByUuid(req, res, next) {
     try {
       const { uuid } = req.params;
-      const userID = req.jwt_payload.id; 
-      const poll = await PollReader.getPollByUuid(userID, uuid);
+      const poll = await PollReader.getPollByUuid(uuid);
       res.json(poll);
     } catch (error) {
       next(error);

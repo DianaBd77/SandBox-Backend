@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get('/:id', ParticipantValidator.getParticipantsByPollIDSchema ,AuthMiddleware.jwtTokenValidation, ParticipantController.getAllParticipantsByPollID);
-router.post('/', ParticipantValidator.createParticipantSchema ,AuthMiddleware.jwtTokenValidation, ParticipantController.createNewParticipant);
+router.post('/', ParticipantValidator.createParticipantSchema , ParticipantController.createNewParticipant);
 router.delete('/:id', ParticipantValidator.deleteParticipantSchema ,AuthMiddleware.jwtTokenValidation, ParticipantController.removeParticipants);
 
 

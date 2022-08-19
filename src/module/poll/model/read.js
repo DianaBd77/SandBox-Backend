@@ -1,6 +1,5 @@
 const DatabaseManager = require("../../../core/database/databaseManager");
 
-
 class PollReader {
   static async getAllPoll(userID) {
     const query = `
@@ -15,13 +14,11 @@ class PollReader {
     return result[0];
   }
 
-  static async getPollByUuid(userID, uuid) {
-
+  static async getPollByUuid(uuid) {
     const query = `
           SELECT id, title, description, link, img_url
           FROM poll
-          WHERE link = '${uuid}'
-                And user_id = ${userID};
+          WHERE link = '${uuid}';
     `;
 
     const result = await DatabaseManager.query(query);
@@ -29,7 +26,6 @@ class PollReader {
   }
 
   static async getPollByID(userID, id) {
-
     const query = `
           SELECT link
           FROM poll
