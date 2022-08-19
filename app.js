@@ -18,7 +18,7 @@ var choiceRouter = require('./src/module/participantChoice/router');
 
 var app = express();
 
-app.use(cors({origin: ["http://localhost:3000"]}));
+app.use(cors({origin: ["http://dianabehshad.xyz:80"]}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,12 +26,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/account', accountRouter);
-app.use('/user', usersRouter);
-app.use('/poll', pollRouter);
-app.use('/item', itemRouter);
-app.use('/participant', participantRouter);
-app.use('/choice', choiceRouter);
+app.use('/api/account', accountRouter);
+app.use('/api/user', usersRouter);
+app.use('/api/poll', pollRouter);
+app.use('/api/item', itemRouter);
+app.use('/api/participant', participantRouter);
+app.use('/api/choice', choiceRouter);
 
 
 app.use(errors());
