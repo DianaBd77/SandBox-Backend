@@ -8,7 +8,6 @@ var cors = require("cors");
 var {errors} = require("celebrate");
 
 
-
 var accountRouter = require('./src/module/account/router');
 var usersRouter = require('./src/module/users/router');
 var pollRouter = require('./src/module/poll/router');
@@ -18,13 +17,12 @@ var choiceRouter = require('./src/module/participantChoice/router');
 
 var app = express();
 
-app.use(cors({origin: ["http://dianabehshad.xyz/"]}));
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use('/api/account', accountRouter);
 app.use('/api/user', usersRouter);
